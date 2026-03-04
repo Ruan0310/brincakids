@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Preços - Brinca Kids By Ruan</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --primary:#ff4ecd;
+    --secondary:#ffcc00;
+    --success:#25d366;
+}
+
+body{
+    margin:0;
+    font-family:'Fredoka',sans-serif;
+    background:linear-gradient(135deg,#f56298,#fcba05);
+}
+
+/* NAV */
+nav{
+    background:white;
+    padding:15px 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+nav .links a{
+    text-decoration:none;
+    font-weight:bold;
+    margin-left:20px;
+    color:var(--primary);
+}
+
+/* HEADER */
+header{
+    padding:30px;
+    text-align:center;
+}
+header img{
+    max-width:150px;
+    border-radius:50%;
+    border:4px solid #fff;
+}
+
+/* HERO */
+.hero{
+    max-width:1100px;
+    margin:30px auto;
+    background:white;
+    border-radius:40px;
+    padding:40px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+    box-shadow:0 30px 60px rgba(0,0,0,0.2);
+}
+
+.hero-img{
+    border-radius:30px;
+    overflow:hidden;
+}
+.hero-img img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.hero-info h1{
+    color:var(--primary);
+    font-size:2.5rem;
+    margin:0;
+}
+
+.hero-info ul{
+    list-style:none;
+    padding:0;
+    margin:20px 0;
+}
+.hero-info li{
+    margin-bottom:10px;
+    font-size:1.1rem;
+}
+
+.price-box{
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+    color:white;
+    padding:25px;
+    border-radius:25px;
+    text-align:center;
+    margin:20px 0;
+}
+.price-box strong{
+    font-size:3rem;
+}
+
+.btn{
+    display:inline-block;
+    background:var(--success);
+    color:white;
+    padding:16px 40px;
+    border-radius:60px;
+    font-weight:bold;
+    text-decoration:none;
+}
+
+/* MINIATURAS */
+.thumb-gallery{
+    display:flex;
+    flex-wrap:wrap;
+    gap:15px;
+    margin-top:20px;
+}
+.thumb-gallery img{
+    width:110px;
+    height:90px;
+    object-fit:cover;
+    border-radius:15px;
+    cursor:pointer;
+    box-shadow:0 6px 15px rgba(0,0,0,0.25);
+    transition:.3s;
+}
+.thumb-gallery img:hover{
+    transform:scale(1.1);
+}
+
+/* MODAL */
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.6);
+    backdrop-filter:blur(5px);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:9999;
+}
+.modal.active{display:flex;}
+
+.modal-box{
+    width:90%;
+    max-width:1100px;
+    background:white;
+    border-radius:35px;
+    overflow:hidden;
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    position:relative;
+}
+
+.modal-close{
+    position:absolute;
+    top:15px;
+    right:20px;
+    width:45px;
+    height:45px;
+    background:var(--primary);
+    color:white;
+    font-size:28px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+}
+.modal-close:hover{
+    transform:scale(1.1);
+}
+
+.modal-img img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.modal-info{
+    padding:40px;
+    background:rgba(255,255,255,0.78);
+    backdrop-filter:blur(10px);
+}
+
+.modal-info h2{
+    color:var(--primary);
+    font-size:2.3rem;
+}
+
+.modal-info ul{
+    list-style:none;
+    padding:0;
+    margin:20px 0;
+}
+.modal-info li{
+    font-size:1.15rem;
+    margin-bottom:12px;
+}
+
+.modal-price{
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+    color:white;
+    padding:18px;
+    border-radius:20px;
+    text-align:center;
+    font-size:2.4rem;
+    margin:25px 0;
+}
+
+.modal-info a{
+    display:block;
+    text-align:center;
+    background:var(--success);
+    color:white;
+    padding:14px;
+    border-radius:50px;
+    font-weight:bold;
+    text-decoration:none;
+}
+
+.back{
+    text-align:center;
+    margin:40px;
+}
+.back a{
+    color:white;
+    font-weight:bold;
+    text-decoration:none;
+}
+
+@media(max-width:900px){
+    .hero{grid-template-columns:1fr;}
+    .modal-box{grid-template-columns:1fr;}
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div><strong>Brinca Kids</strong></div>
+    <div class="links" id="navLinks">
+        <a href="index.html">Início</a>
+        <a href="precos.html">Preços</a>
+        <a href="login.html">Login</a>
+        <a href="registrar.html">Registrar</a>
+    </div>
+</nav>
+
+<header>
+    <img src="imagens/logo.png">
+</header>
+
+<section class="hero">
+    <div class="hero-img">
+        <img src="imagens/cama1.jpg">
+    </div>
+
+    <div class="hero-info">
+        <h1>Cama Elástica Grande</h1>
+
+        <ul>
+            <li>🎯 3,05 metros de diâmetro</li>
+            <li>✅ Suporta até <strong>300 KG</strong></li>
+            <li>🛠️ Montagem inclusa</li>
+            <li>🎉 Ideal para festas</li>
+        </ul>
+
+        <div class="price-box">
+            <strong>R$ 79,90</strong><br>
+            Por <strong>diária</strong>
+        </div>
+
+        <a href="https://wa.me/5545984055532" target="_blank" class="btn">
+            RESERVE AGORA
+        </a>
+
+        <div class="thumb-gallery">
+            <img src="imagens/cama2.jpg" onclick="openModal('imagens/cama2.jpg')">
+            <img src="imagens/cama3.jpg" onclick="openModal('imagens/cama3.jpg')">
+            <img src="imagens/cama4.jpg" onclick="openModal('imagens/cama4.jpg')">
+            <img src="imagens/cama5.jpg" onclick="openModal('imagens/cama5.jpg')">
+            <img src="imagens/cama6.jpg" onclick="openModal('imagens/cama6.jpg')">
+        </div>
+    </div>
+</section>
+
+<div class="back">
+    <a href="index.html">← Voltar para o início</a>
+</div>
+
+<!-- MODAL -->
+<div class="modal" id="modal" onclick="closeModal()">
+    <div class="modal-box" onclick="event.stopPropagation()">
+        <div class="modal-close" onclick="closeModal()">✕</div>
+
+        <div class="modal-img">
+            <img id="modalImage">
+        </div>
+
+        <div class="modal-info">
+            <h2>Cama Elástica Grande</h2>
+            <ul>
+                <li>✔ 3,05 metros</li>
+                <li>✔ Estrutura reforçada</li>
+                <li>✔ Rede de proteção</li>
+                <li>✔ Até 300KG</li>
+                <li>✔ Montagem no local</li>
+            </ul>
+
+            <div class="modal-price">
+                R$ 79,90 / diária
+            </div>
+
+            <a href="https://wa.me/5545984055532" target="_blank">
+                RESERVAR AGORA
+            </a>
+        </div>
+    </div>
+</div>
+
+<script>
+let logado = localStorage.getItem("logado");
+let admin = localStorage.getItem("admin");
+let usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
+
+if(logado === "true"){
+
+    let nome = admin ? "Administrador" : usuarioLogado.usuario;
+
+    let adminLink = admin ? `<a href="admin.html">Admin</a>` : "";
+
+    document.getElementById("navLinks").innerHTML = `
+        <a href="index.html">Início</a>
+        <a href="precos.html">Preços</a>
+        <a href="perfil.html">Perfil</a>
+        ${adminLink}
+        <span>Olá, ${nome}</span>
+        <a href="#" onclick="logout()">Sair</a>
+    `;
+}
+
+function logout(){
+    localStorage.clear();
+    location.reload();
+}
+</script>
+
+</body>
+</html>

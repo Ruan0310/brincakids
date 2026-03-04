@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meu Perfil - Brinca Kids</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --primary:#ff4ecd;
+    --secondary:#ffcc00;
+}
+
+body{
+    margin:0;
+    font-family:'Fredoka',sans-serif;
+    background:linear-gradient(135deg,#f56298,#fcba05);
+}
+
+/* NAV */
+nav{
+    background:white;
+    padding:15px 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+nav a{
+    text-decoration:none;
+    font-weight:bold;
+    margin-left:20px;
+    color:var(--primary);
+}
+
+/* CARD PERFIL */
+.container{
+    max-width:600px;
+    margin:50px auto;
+}
+
+.card{
+    background:white;
+    padding:40px;
+    border-radius:30px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.15);
+}
+
+h2{
+    color:var(--primary);
+    margin-top:0;
+}
+
+.info{
+    margin:15px 0;
+    font-size:1.1rem;
+}
+
+button{
+    margin-top:20px;
+    padding:12px 25px;
+    border:none;
+    border-radius:30px;
+    background:var(--primary);
+    color:white;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<nav id="navLinks">
+<a href="index.html">Início</a>
+<a href="precos.html">Preços</a>
+<a href="perfil.html">Perfil</a>
+<a href="#" onclick="logout()">Sair</a>
+</nav>
+
+<div class="container">
+<div class="card">
+<h2>Meu Perfil</h2>
+
+<div class="info"><strong>Usuário:</strong> <span id="usuario"></span></div>
+<div class="info"><strong>Email:</strong> <span id="email"></span></div>
+<div class="info"><strong>Endereço:</strong> <span id="endereco"></span></div>
+<div class="info"><strong>Estado:</strong> <span id="estado"></span></div>
+<div class="info"><strong>Cidade:</strong> <span id="cidade"></span></div>
+<div class="info"><strong>Data de nascimento:</strong> <span id="nascimento"></span></div>
+
+<button onclick="editar()">Editar Perfil</button>
+
+</div>
+</div>
+
+<script>
+let usuario = JSON.parse(localStorage.getItem("usuario"));
+let logado = localStorage.getItem("logado");
+
+if(!usuario || logado !== "true"){
+    alert("Você precisa estar logado!");
+    window.location.href = "login.html";
+}
+
+document.getElementById("usuario").innerText = usuario.usuario;
+document.getElementById("email").innerText = usuario.email;
+document.getElementById("endereco").innerText = usuario.endereco;
+document.getElementById("estado").innerText = usuario.estado;
+document.getElementById("cidade").innerText = usuario.cidade;
+document.getElementById("nascimento").innerText = usuario.nascimento;
+
+function logout(){
+    localStorage.removeItem("logado");
+    window.location.href = "index.html";
+}
+
+function editar(){
+    window.location.href = "registrar.html";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registrar</title>
+
+<style>
+body{
+    margin:0;
+    font-family:sans-serif;
+    background:linear-gradient(135deg,#f56298,#fcba05);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    padding:20px;
+}
+
+.card{
+    background:white;
+    padding:40px;
+    border-radius:20px;
+    width:350px;
+    text-align:center;
+}
+
+input{
+    width:100%;
+    padding:10px;
+    margin:8px 0;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    background:#ff4ecd;
+    color:white;
+    border:none;
+    cursor:pointer;
+    margin-top:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+<h2>Criar Conta</h2>
+
+<input type="text" id="usuario" placeholder="Nome de usuário">
+<input type="email" id="email" placeholder="Email">
+<input type="password" id="senha" placeholder="Senha">
+
+<input type="text" id="endereco" placeholder="Endereço">
+<input type="text" id="estado" placeholder="Estado">
+<input type="text" id="cidade" placeholder="Cidade">
+
+<input type="date" id="nascimento">
+
+<button onclick="registrar()">Criar Conta</button>
+
+<p>Já tem conta? <a href="login.html">Login</a></p>
+</div>
+
+<script>
+function registrar(){
+
+    let usuario = document.getElementById("usuario").value;
+    let email = document.getElementById("email").value;
+    let senha = document.getElementById("senha").value;
+    let endereco = document.getElementById("endereco").value;
+    let estado = document.getElementById("estado").value;
+    let cidade = document.getElementById("cidade").value;
+    let nascimento = document.getElementById("nascimento").value;
+
+    if(usuario===""||email===""||senha===""){
+        alert("Preencha pelo menos usuário, email e senha!");
+        return;
+    }
+
+    let dados = {
+        usuario,
+        email,
+        senha,
+        endereco,
+        estado,
+        cidade,
+        nascimento
+    };
+
+    localStorage.setItem("usuario", JSON.stringify(dados));
+
+    alert("Conta criada com sucesso!");
+    window.location.href = "login.html";
+}
+</script>
+
+</body>
+</html>

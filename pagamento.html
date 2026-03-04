@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pagamento</title>
+
+<style>
+body{
+    margin:0;
+    font-family:sans-serif;
+    background:linear-gradient(135deg,#f56298,#fcba05);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.card{
+    background:white;
+    padding:40px;
+    border-radius:25px;
+    text-align:center;
+}
+button{
+    padding:12px 25px;
+    background:#25d366;
+    color:white;
+    border:none;
+    border-radius:30px;
+    cursor:pointer;
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+<h2>Pagamento</h2>
+<p>Valor: R$ 79,90</p>
+<p>Simulação de pagamento PIX / Cartão</p>
+
+<button onclick="pagar()">Pagar Agora</button>
+</div>
+
+<script>
+function pagar(){
+
+    let reserva = JSON.parse(localStorage.getItem("reserva"));
+
+    if(reserva){
+        reserva.status = "Pago";
+        localStorage.setItem("reserva", JSON.stringify(reserva));
+    }
+
+    alert("Pagamento aprovado!");
+    window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>

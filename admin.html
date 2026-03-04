@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel Admin - Brinca Kids</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --primary:#ff4ecd;
+    --secondary:#ffcc00;
+}
+
+body{
+    margin:0;
+    font-family:'Fredoka',sans-serif;
+    background:linear-gradient(135deg,#f56298,#fcba05);
+}
+
+/* NAV */
+nav{
+    background:white;
+    padding:15px 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+nav a{
+    text-decoration:none;
+    font-weight:bold;
+    margin-left:20px;
+    color:var(--primary);
+}
+
+/* CONTAINER */
+.container{
+    max-width:900px;
+    margin:50px auto;
+}
+
+.card{
+    background:white;
+    padding:30px;
+    border-radius:25px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.15);
+}
+
+h2{
+    color:var(--primary);
+}
+
+/* LISTA */
+.usuario-box{
+    background:#f3f3f3;
+    padding:15px;
+    border-radius:15px;
+    margin-bottom:15px;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<a href="index.html">Início</a>
+<a href="precos.html">Preços</a>
+<a href="perfil.html">Perfil</a>
+<a href="#" onclick="logout()">Sair</a>
+</nav>
+
+<div class="container">
+<div class="card">
+
+<h2>Painel Administrativo 👑</h2>
+<p>Lista de usuários cadastrados:</p>
+
+<div id="listaUsuarios"></div>
+
+</div>
+</div>
+
+<script>
+let usuario = JSON.parse(localStorage.getItem("usuario"));
+let logado = localStorage.getItem("logado");
+
+if(!usuario || logado !== "true" || usuario.email !== "admin@brincakids.com"){
+    alert("Acesso restrito ao administrador!");
+    window.location.href = "index.html";
+}
+
+let lista = document.getElementById("listaUsuarios");
+
+let dados = JSON.parse(localStorage.getItem("usuario"));
+
+if(dados){
+    lista.innerHTML += `
+        <div class="usuario-box">
+            <strong>Usuário:</strong> ${dados.usuario}<br>
+            <strong>Email:</strong> ${dados.email}<br>
+            <strong>Cidade:</strong> ${dados.cidade}<br>
+            <strong>Estado:</strong> ${dados.estado}
+        </div>
+    `;
+}
+
+function logout(){
+    localStorage.removeItem("logado");
+    window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>
